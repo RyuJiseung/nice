@@ -1,6 +1,14 @@
 getwd()
 setwd("")
 
+install.packages("stringr")
+install.packages("dplyr")
+install.packages("corrplot")
+install.packages("psych")
+install.packages("GGally")
+install.packages("lubridate")
+install.packages('DataCombine')
+
 ####.############### ####
 ####.# 1. 데이터 준비 # ####
 ####.############### ####

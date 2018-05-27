@@ -1,8 +1,15 @@
 getwd()
 setwd("/Users/jinseokryu/Desktop/데이터 및 ppt 파일/")
 
+# install.packages("stringr")
+# install.packages("dplyr")
+# install.packages("corrplot")
+# install.packages("psych")
+# install.packages("GGally")
+# install.packages("lubridate")
+# install.packages('DataCombine')
 
-
+# https://bit.ly/2GQNUTn
 
 
 
@@ -18,12 +25,6 @@ setwd("/Users/jinseokryu/Desktop/데이터 및 ppt 파일/")
 cat("
 데이터를 활용한 의사결정이 중요해짐
     R은 무료이고, 최신 분석기법과 관련된 패키지가 빠르게 생성되고 있다.
-
-데이터 클리닝은 데이터 분석의 핵심이다.
-수준 이하의 데이터는 비즈니스 인텔리전스의 수많은 문제를 설명하는 주요 원인이다.
-데이터 클리닝은 원본 데이터를 분석에 적합한 데이터로 가공하는 과정이다.
-데이터의 질을 검사하고, 처리하고, 데이터 형태를 표준화하는 일은 분석 프로젝트 일정의 상당 부분을 차지한다.
-데이터 과학의 80%는 데이터 클리닝에 소비되고, 나버지는 20%는 데이터 클리닝하는 시간을 불평하는데 쓰인다.
 ")
 
 
@@ -49,6 +50,13 @@ bike <- read.csv("raw_bikeshare_data.csv",
 # https://rstudio-pubs-static.s3.amazonaws.com/98475_c0697af6a9b045239a367f9190fdb12d.html
 
 
+cat("
+    데이터 클리닝은 데이터 분석의 핵심이다.
+    수준 이하의 데이터는 비즈니스 인텔리전스의 수많은 문제를 설명하는 주요 원인이다.
+    데이터 클리닝은 원본 데이터를 분석에 적합한 데이터로 가공하는 과정이다.
+    데이터의 질을 검사하고, 처리하고, 데이터 형태를 표준화하는 일은 분석 프로젝트 일정의 상당 부분을 차지한다.
+    데이터 과학의 80%는 데이터 클리닝에 소비되고, 나버지는 20%는 데이터 클리닝하는 시간을 불평하는데 쓰인다.
+    ")
 
 
 cat("
@@ -100,6 +108,7 @@ tail(bike)
 #### __ ● 데이터 이슈 찾기 ####
 # NA가 있는가?
 table(is.na(bike))
+#table(bike$season)
 library(stringr)
 str_detect(bike, "NA") # column 탐색
 colnames(bike)[13]
@@ -199,7 +208,7 @@ na_loc <- is.na(bike$sources)
 bike$sources[na_loc] <- "unknown"
 str(bike)
 unique(bike$sources)
-# install.packages('DataCombine')
+
 library(DataCombine)
 web_sites <- "(www.[a-z]*.[a-z]*)"
 current <- unique(str_subset(bike$sources, web_sites))
@@ -329,11 +338,9 @@ cor_matrix = cor(marketing[ , 1:6])
 round(cor_matrix, 4)
 
 #### __ ● 유의성 판단 ####
-# install.packages("psych")
 library(psych)
 corr.test(marketing[ , 1:6])
 
-# install.packages("corrplot")
 library("corrplot")
 corrplot(cor_matrix)
 
