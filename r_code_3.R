@@ -1,5 +1,7 @@
 getwd()
-setwd("/Users/jinseokryu/Desktop/데이터 및 ppt 파일/")
+# setwd("")
+
+# https://bit.ly/2GQNUTn
 
 install.packages("stringr")
 install.packages("dplyr")
@@ -48,6 +50,13 @@ bike[location, ]
 
 
 #### __ ● factor형으로 바꿀 항목 검토 ####
+bike$holiday <- factor(bike$holiday, 
+                       levels = c(0,1),
+                       labels = c("no", "yes")) 
+bike$workingday <- factor(bike$workingday, 
+                          levels = c(0, 1),
+                          labels = c("no", "yes"))
+
 
 
 #### __ ● ordered factor형으로 바꿀 항목 검토 #### 
@@ -99,7 +108,8 @@ table(bike$sources)
 # 비용은 1 = 1000$을 뜻한다.
 
 #### [01] 단일 변수 분석 ####
-marketing <- read.csv("marketing.csv", stringsAsFactors = FALSE)
+marketing <- read.csv("marketing.csv", 
+                      stringsAsFactors = FALSE)
 
 
 #### __ ● 인구밀도 그래프 ####
